@@ -2,8 +2,6 @@ module ActsAsStashable
   extend ActiveSupport::Concern
 
   module ClassMethods
-    attr_reader :stashable_session_store
-
     def stashed(session)
       where(:id => stashable_session_store(session))
     end
