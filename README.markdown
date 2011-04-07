@@ -9,6 +9,10 @@ Example
 =======
 Note that you always have to pass the session in from the controller. I don't like the idea of storing state on the model, but I may change this as it's a bit annoying to have to pass it in every time.
 
+Install like:
+
+    rails plugin install git@github.com:whilefalse/rails-3-acts-as-stashable.git
+
 Setup your model like so:
 
     class MyModel < ActiveRecord::Base
