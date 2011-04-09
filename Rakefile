@@ -1,15 +1,14 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rspec/core/rake_task'
 
 desc 'Default: run unit tests.'
-task :default => :test
+task :default => :spec
 
 desc 'Test the acts_as_stashable plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = 'spec/**/*_spec.rb'
   t.verbose = true
 end
 
