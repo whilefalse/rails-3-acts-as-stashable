@@ -53,6 +53,9 @@ If you're doing lazy registration stuff, this is useful. You'll have a bunch of 
     Thing.reparent_all(session, :field, value, false) #Same as above but doesn't unstash the objects (not sure why you'd want this) 
 
 
-NOTE:
+To run the tests
+---
+    cd path/to/rails-3-acts-as-stashable
+    rake spec
 
-I need to finish this off and write tests for it - use at your own peril, it is just here for version control
+The tests use their own in memory database to run tests on a Post model.
