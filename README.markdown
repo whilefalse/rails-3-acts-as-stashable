@@ -14,9 +14,13 @@ Install like:
     rails plugin install git@github.com:whilefalse/rails-3-acts-as-stashable.git
 
 Even better:
+
   Add this to your Gemfile:
+
     gem 'rails-3-acts-as-stashable', :git => 'git@github.com:whilefalse/rails-3-acts-as-stashable.git'
+
   Then:
+
     bundle install
 
 Setup your model like so:
