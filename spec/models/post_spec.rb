@@ -4,8 +4,8 @@ class Post < ActiveRecord::Base
 end
 
 describe Post do
-  let(:post) { Post.new.tap { |p| p.save } }
-  let(:post2) { Post.new.tap { |p| p.save } }
+  let(:post) { Post.create }
+  let(:post2) { Post.create }
   let(:session) { {} }
 
   it "allows stashing in the session" do
