@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name = %q{rails3-acts-as-stashable}
+  s.name = %q{rails-3-acts-as-stashable}
   s.version = '0.1.1'
   s.platform = Gem::Platform::RUBY
   s.authors = ["Steven Anderson"]
