@@ -1,5 +1,4 @@
 require 'spec_helper'
-require File.dirname(__FILE__) + '/../../lib/acts_as_stashable'
 class Post < ActiveRecord::Base
   acts_as_stashable
 end

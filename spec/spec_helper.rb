@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require 'rails/all'
+require 'rails-3-acts-as-stashable'
 #require 'rspec/rails'
 
 ActiveRecord::Base.establish_connection(
