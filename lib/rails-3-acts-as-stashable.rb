@@ -10,14 +10,12 @@ module ActsAsStashable
       stashed(session).each do |obj|
         obj.send(:"#{field}=", value)
         obj.save!
-        if unstash
-          obj.unstash(session)
-        end
+        obj.unstash(session) if unstash
       end
     end
 
     def stashable_session_store(session)
-      (session[:acts_as_stashable] ||= {})[self.name.to_sym] ||= []
+      (session[:acts_as_stashable] ||= {})[name.to_sym] ||= []
     end
   end
 
@@ -27,11 +25,8 @@ module ActsAsStashable
     end
 
     def unstash(session)
-      if !stashed?(session)
-        raise "Not stashed"
-      else
-        self.class.stashable_session_store(session).delete(self.id)
-      end
+      raise "Not stashed" if !stashed?(session)
+      self.class.stashable_session_store(session).delete(id)
     end
 
     def stashed?(session)
