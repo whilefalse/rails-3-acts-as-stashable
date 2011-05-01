@@ -60,7 +60,14 @@ To reparent everything
 If you're doing lazy registration stuff, this is useful. You'll have a bunch of stuff stashed in the session, and when a user signs up, you'll want to make sure they're all made to relate to the new user.
 
     Thing.reparent_all(session, :field, value)        #Updated :field to value on all stashed Things, saves them and unstashes them
-    Thing.reparent_all(session, :field, value, false) #Same as above but doesn't unstash the objects (not sure why you'd want this) 
+    Thing.reparent_all(session, :field, value, false) #Same as above but doesn't unstash the objects (not sure why you'd want this)
+
+You can also reparent using a block - the model object will be yielded for each object being reparented.
+The setting of the field will be skipped, but the object will be save!'d and unstashed after your block finishes (unless unstash is false). This is identical to the first line above:
+
+    Thing.reparent_all(session) do |thing|
+        thing.field = value
+    end
 
 
 To run the tests

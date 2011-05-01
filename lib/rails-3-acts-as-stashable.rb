@@ -6,9 +6,13 @@ module ActsAsStashable
       where(:id => stashable_session_store(session))
     end
 
-    def reparent_all(session, field, value, unstash=true)
+    def reparent_all(session, field=nil, value=nil, unstash=true)
       stashed(session).each do |obj|
-        obj.send(:"#{field}=", value)
+        if block_given?
+          yield obj
+        else
+          obj.send(:"#{field}=", value)
+        end
         obj.save!
         obj.unstash(session) if unstash
       end

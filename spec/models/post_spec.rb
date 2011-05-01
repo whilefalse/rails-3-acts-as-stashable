@@ -27,28 +27,37 @@ describe Post do
   end
 
   it "allows reparenting of all objects" do
-    post.stash(session)
-    post2.stash(session)
+    [post, post2].map { |p| p.stash(session) }
 
     Post.reparent_all(session, :title, '--REPARENTED--')
 
-    post.should_not be_stashed(session)
-    post2.should_not be_stashed(session)
-
-    post.reload.title.should == '--REPARENTED--'
-    post2.reload.title.should == '--REPARENTED--'
+    [post, post2].map do |p|
+      p.should_not be_stashed(session)
+      p.reload.title.should == '--REPARENTED--'
+    end
   end
 
   it "allows reparenting of all objects without unstashing" do
-    post.stash(session)
-    post2.stash(session)
+    [post, post2].map { |p| p.stash(session) }
 
     Post.reparent_all(session, :title, '--REPARENTED--', false)
 
-    post.should be_stashed(session)
-    post2.should be_stashed(session)
+    [post, post2].map do |p|
+      p.should be_stashed(session)
+      p.reload.title.should == '--REPARENTED--'
+    end
+  end
 
-    post.reload.title.should == '--REPARENTED--'
-    post2.reload.title.should == '--REPARENTED--'
+  it "allows reparenting using a block" do
+    [post, post2].map { |p| p.stash(session) }
+
+    Post.reparent_all(session) do |post|
+      post.title = "--BLOCK-REPARENTED--"
+    end
+
+    [post, post2].map do |p|
+      p.should_not be_stashed(session)
+      p.reload.title.should == '--BLOCK-REPARENTED--'
+    end
   end
 end
